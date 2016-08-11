@@ -8,7 +8,7 @@ API = {
 COUNTRY_ID = 1
 CITIES_COUNT = 3
 
-def GET(url, data = {}, auth: true)
+def GET(url, data = {}, auth = true)
   uri = URI(url)
   uri.query = URI.encode_www_form(auth ? API.merge(data) : data)
   puts "HTTP GET #{uri.to_s}"
@@ -73,9 +73,8 @@ namespace :db do
       text_format: 'text',
       page_size: 200
     }
-    GET('https://kudago.com/public-api/v1.3/places/', params, auth: false)['results']
+    GET('https://kudago.com/public-api/v1.3/places/', params, false)['results']
       .each do |data_item|
-        puts data_item
         Attraction.create!({
           city_id: cities.sample.id,
           title: data_item['title'].to_s,

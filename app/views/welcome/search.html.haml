@@ -1,7 +1,7 @@
 %h2.page-header Search results
 
 .row
-  .col-md-12
+  .col-md-12{style: 'margin-bottom: 20px'}
     %form{action: search_path, method: :get}
       .input-group
         %input.form-control{placeholder: "Search for...", type: "text", name: :q, value: params[:q]}

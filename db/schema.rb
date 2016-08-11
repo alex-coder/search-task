@@ -12,35 +12,35 @@
 
 ActiveRecord::Schema.define(version: 20160811084903) do
 
-  create_table "activities", force: :cascade do |t|
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "city_id"
     t.string  "title"
-    t.text    "description"
+    t.text    "description", limit: 65535
   end
 
-  create_table "activities_attractions", id: false, force: :cascade do |t|
+  create_table "activities_attractions", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "activity_id",   null: false
     t.integer "attraction_id", null: false
   end
 
-  create_table "activities_tags", id: false, force: :cascade do |t|
+  create_table "activities_tags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "activity_id", null: false
     t.integer "tag_id",      null: false
   end
 
-  create_table "attractions", force: :cascade do |t|
+  create_table "attractions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "city_id"
     t.string  "title"
-    t.text    "description"
+    t.text    "description", limit: 65535
   end
 
-  create_table "cities", force: :cascade do |t|
+  create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text   "description"
+    t.text   "description", limit: 65535
   end
 
 end
