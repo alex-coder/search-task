@@ -1,0 +1,12 @@
+%h2.page-header
+  = @item.title
+  %small.text-success= @item.city.name
+
+%p= @item.description
+
+- @item.tags.each do |tag|
+  %a.label.label-default{href: tag_path(tag)}= tag.name
+
+%h3 Attractions
+- @item.attractions.each do |attraction|
+  = render 'shared/attraction_list_item', attraction: attraction
