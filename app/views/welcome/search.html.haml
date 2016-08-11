@@ -1,6 +1,15 @@
-%h2.page-header
-  Search results
-  %small= "Count: #{@items.size}"
+%h2.page-header Search results
+
+.row
+  .col-md-12
+    %form{action: search_path, method: :get}
+      .input-group
+        %input.form-control{placeholder: "Search for...", type: "text", name: :q, value: params[:q]}
+        %span.input-group-btn
+          %button.btn.btn-default{:type => "submit"} Search
+
+- if @items.empty?
+  %h3 No results
 
 - @items.each do |activity|
   = render 'shared/activity_list_item', activity: activity

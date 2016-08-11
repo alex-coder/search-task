@@ -8,10 +8,10 @@ class WelcomeController < ApplicationController
 
     @items = Activity
                 .joins(:tags, :attractions)
-                .where('activities.title like ? or
-                        activities.description like ? or
-                        tags.name like ? or
-                        attractions.title like ?',
+                .where('LOWER(activities.title) like ? or
+                        LOWER(activities.description) like ? or
+                        LOWER(tags.name) like ? or
+                        LOWER(attractions.title) like ?',
                     "%#{search_query}%",
                     "%#{search_query}%",
                     "%#{search_query}%",
