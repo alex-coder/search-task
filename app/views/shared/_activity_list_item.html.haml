@@ -1,0 +1,8 @@
+.row
+  .col-md-12
+    .thumbnail
+      .caption
+        %h3=link_to activity.title, activity_path(activity)
+        %p= preview_text(activity.description)
+        %p
+          %a.btn.btn-primary{:href => activity_path(activity), :role => "button"} More
