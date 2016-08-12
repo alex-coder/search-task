@@ -1,8 +1,4 @@
 .row
   .col-md-8.col-md-offset-2{style: 'margin-top: 20%'}
-    %h2 Search
-    %form{action: search_path, method: :get}
-      .input-group
-        %input.form-control{placeholder: "Search for...", type: "text", name: :q}
-        %span.input-group-btn
-          %button.btn.btn-default{:type => "submit"} Search
+    %h2 Поиск
+    = render 'shared/search_form'

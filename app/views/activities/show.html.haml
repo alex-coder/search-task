@@ -7,6 +7,6 @@
 - @item.tags.each do |tag|
   %a.label.label-default{href: tag_path(tag)}= tag.name
 
-%h3 Attractions
+%h3 Достопримечательности
 - @item.attractions.each do |attraction|
   = render 'shared/attraction_list_item', attraction: attraction

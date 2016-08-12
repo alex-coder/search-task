@@ -3,6 +3,8 @@
     .thumbnail
       .caption
         %h3=link_to activity.title, activity_path(activity)
+        %h5.text-muted= activity.city.name
+
         %p= preview_text(activity.description)
         %p
-          %a.btn.btn-primary{:href => activity_path(activity), :role => "button"} More
+          %a.btn.btn-primary.btn-sm{:href => activity_path(activity), :role => "button"} Подробнее

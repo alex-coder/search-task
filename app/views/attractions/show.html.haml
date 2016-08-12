@@ -4,6 +4,6 @@
 
 %p= @item.description.html_safe
 
-%h3 Activities
+%h3 Экскурсии
 - @item.activities.each do |activity|
   = render 'shared/activity_list_item', activity: activity

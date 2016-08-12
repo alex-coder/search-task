@@ -1,0 +1,5 @@
+%form{action: search_path, method: :get}
+  .input-group
+    %input.form-control{placeholder: "Найдется всё и вся", type: "text", name: :q, value: params[:q]}
+    %span.input-group-btn
+      %button.btn.btn-default{:type => "submit"} Искать
