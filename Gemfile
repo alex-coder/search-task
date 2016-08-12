@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem "haml-rails", "~> 0.9"
 gem 'kaminari'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platform: :mri

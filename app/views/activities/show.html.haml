@@ -1,6 +1,8 @@
 %h2.page-header
   = @item.title
   %small.text-success= @item.city.name
+  %a.btn.btn-default.btn-xs{href: edit_activity_path(@item)}
+    %i.glyphicon.glyphicon-pencil
 
 %p= @item.description.html_safe
 

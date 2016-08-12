@@ -13,9 +13,29 @@
           %a.navbar-brand{:href => root_path}= sitename
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li= link_to "Все экскурсии", activities_path
-            %li= link_to "Все достопримечательности", attractions_path
-            %li= link_to "Все тэги", tags_path
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Экскурсии
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to "Все", activities_path
+                %li= link_to "Новая", new_activity_path
+
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Достопримечательности
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to "Все", attractions_path
+                %li= link_to "Новая", new_attraction_path
+
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Тэги
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to "Все", tags_path
+                %li= link_to "Новый", new_tag_path
 
           %ul.nav.navbar-nav.navbar-right
             %li.dropdown

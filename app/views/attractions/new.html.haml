@@ -1,0 +1,11 @@
+%h2.page-header Новая достопримечательность
+
+.row
+  .col-md-8.col-md-offset-2
+    = simple_form_for @item, class: Attraction do |f|
+      = f.input :title
+      = f.association :city
+      = f.association :activities, as: :check_boxes
+      = f.input :description, as: :text
+
+      = f.button :submit, "OK"

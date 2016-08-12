@@ -2,4 +2,7 @@
 
 %ul.list-group
   - @items.each do |tag|
-    %li.list-group-item= link_to tag.name, tag_path(tag)
+    %li.list-group-item
+      = link_to tag.name, tag_path(tag)
+      %a.btn.btn-link.btn-xs{href: edit_tag_path(tag)}
+        %i.glyphicon.glyphicon-pencil
