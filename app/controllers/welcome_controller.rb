@@ -7,6 +7,7 @@ class WelcomeController < ApplicationController
     return redirect_to action: :index if search_query.empty?
 
     @items = Activity
+                .select('activities.*, IF (activities.city_id = 1, 1, 0) as cond')
                 .joins(:tags, :attractions, :city)
                 .where('LOWER(activities.title) like ? or
                         LOWER(activities.description) like ? or
@@ -19,6 +20,7 @@ class WelcomeController < ApplicationController
                     "%#{search_query}%",
                     "%#{search_query}%"
                 )
+                .order('cond desc')
                 .distinct
                 .page(params[:page])
   end

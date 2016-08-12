@@ -2,7 +2,7 @@
   = @item.title
   %small.text-success= @item.city.name
 
-%p= @item.description
+%p= @item.description.html_safe
 
 - @item.tags.each do |tag|
   %a.label.label-default{href: tag_path(tag)}= tag.name

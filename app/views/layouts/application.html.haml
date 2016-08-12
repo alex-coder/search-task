@@ -12,6 +12,14 @@
         .navbar-header
           %a.navbar-brand{:href => root_path}= sitename
         .collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                = city.name
+                %span.caret
+              %ul.dropdown-menu
+                - cities.each do |city|
+                  %li= link_to city.name, city_path(city)
 
     .container
       = yield

@@ -1,0 +1,9 @@
+%h2.page-header
+  = @item.title
+  %small.text-success= @item.city.name
+
+%p= @item.description.html_safe
+
+%h3 Activities
+- @item.activities.each do |activity|
+  = render 'shared/activity_list_item', activity: activity

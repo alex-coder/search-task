@@ -1,0 +1,4 @@
+%h2.page-header= "Activities in category `#{@item.name}`"
+
+- @item.activities.each do |activity|
+  = render 'shared/activity_list_item', activity: activity
