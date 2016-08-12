@@ -88,13 +88,14 @@ namespace :db do
   task fill_activities: :environment do
     tags = Tag.all
     attractions = Attraction.all
+    cities = City.all
     Activity.destroy_all
     # Getting activities
     GET("http://api.sputnik8.com/v1/products")
       .each do |data_item|
         Activity.create!({
           id: data_item['id'].to_i,
-          city_id: data_item['city_id'].to_i,
+          city_id: cities.sample.id,
           title: data_item['title'].to_s,
           description: data_item['description'].to_s,
           tags: tags.sample(3),
