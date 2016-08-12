@@ -1,0 +1,6 @@
+%h2.page-header Достопримечательности
+
+- @items.each do |attraction|
+  = render 'shared/attraction_list_item', attraction: attraction
+
+= paginate @items

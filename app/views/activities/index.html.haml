@@ -1,0 +1,6 @@
+%h2.page-header Экскурсии
+
+- @items.each do |activity|
+  = render 'shared/activity_list_item', activity: activity
+
+= paginate @items

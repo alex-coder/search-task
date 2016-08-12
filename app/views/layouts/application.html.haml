@@ -12,6 +12,11 @@
         .navbar-header
           %a.navbar-brand{:href => root_path}= sitename
         .collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li= link_to "Все экскурсии", activities_path
+            %li= link_to "Все достопримечательности", attractions_path
+            %li= link_to "Все тэги", tags_path
+
           %ul.nav.navbar-nav.navbar-right
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
