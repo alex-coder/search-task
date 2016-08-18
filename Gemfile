@@ -19,6 +19,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem "haml-rails", "~> 0.9"
 gem 'kaminari'
 gem 'simple_form'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

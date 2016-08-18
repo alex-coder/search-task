@@ -1,6 +1,8 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'elasticsearch/rails/instrumentation'
+# require 'elasticsearch/rails/lograge'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -17,5 +19,7 @@ module SputnikTask
     config.generators do |g|
       g.assets false
     end
+
+    # config.lograge.enabled = true
   end
 end
