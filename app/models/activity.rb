@@ -17,9 +17,9 @@ class Activity < ApplicationRecord
     __elasticsearch__.update_document
   end
 
-  after_commit on: [:destroy] do
-    __elasticsearch__.delete_document
-  end
+  # after_commit on: [:destroy] do
+  #   __elasticsearch__.delete_document
+  # end
 
   settings do
     mappings do
