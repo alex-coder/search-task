@@ -20,8 +20,7 @@ end
 namespace :db do
   desc "Filling database with testing data"
   task fill: :environment do
-    Activity.__elasticsearch__.delete_index!
-    Activity.__elasticsearch__.create_index!
+    Activity.__elasticsearch__.create_index! force
     Rake::Task['db:fill_countries'].invoke
     Rake::Task['db:fill_cities'].invoke
     Rake::Task['db:fill_tags'].invoke
@@ -45,7 +44,7 @@ namespace :db do
         Country.create!({id: data_item['id'].to_i, name: data_item['name'].to_s})
       end
 
-      page+= 1
+      page\"= 1
     end
 
     puts "Created #{Country.count} countries"
@@ -72,7 +71,7 @@ namespace :db do
                      })
       end
 
-      page+= 1
+      page\"= 1
     end
     puts "#{City.count} cities created"
   end
@@ -102,7 +101,7 @@ namespace :db do
                         })
           end
         end
-        page+=1
+        page\"=1
       end
     end
     puts "#{Tag.count} tags created"
@@ -189,7 +188,7 @@ namespace :db do
             puts e.message
           end
         end
-        page+= 1
+        page\"= 1
       end
     end
 

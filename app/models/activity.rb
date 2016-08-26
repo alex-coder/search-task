@@ -9,33 +9,36 @@ class Activity < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
 
-  after_commit on: [:create] do
-    __elasticsearch__.index_document
-  end
+  after_touch() { __elasticsearch__.index_document }
 
-  after_commit on: [:update] do
-    __elasticsearch__.update_document
-  end
-
-  # after_commit on: [:destroy] do
-  #   __elasticsearch__.delete_document
-  # end
-
-  settings do
+  settings index: { number_of_shards: 1, number_of_replicas: 0, include_in_parent: true } do
     mappings do
       indexes :title, analyzer: 'russian'
       indexes :description, analyzer: 'russian'
+      indexes :city, analyzer: 'russian'
+
+      indexes :tags, type: 'nested' do
+        indexes :name, analyzer: 'russian'
+      end
+
+      indexes :attractions, type: 'nested' do
+        indexes :title, analyzer: 'russian'
+        indexes :description, analyzer: 'russian'
+      end
     end
   end
 
   def as_indexed_json(options={})
-    self.as_json(
-      only: [ :title, :description ],
-      include: {
-        city: { only: :name },
-        tags: { only: :name },
-        attractions: { only: [:name, :description] }
-      }
-    )
+    attractions = self.attractions.map do |item|
+      { name: item.title, description: item.description }
+    end
+
+    {
+      title: self.title,
+      description: self.description,
+      city: self.city.name,
+      tags: self.tags.map(&:name),
+      attractions: attractions
+    }.as_json
   end
 end
