@@ -8,9 +8,14 @@ class WelcomeController < ApplicationController
 
     @items = Activity
                 .search(
-                  query: { match: { title: search_query }}
+                  query: {
+                    multi_match: {
+                      query: search_query,
+                      fields: %W(title description tags.name categories.name categories.description)
+                    }
+                  }
                 )
-                .records
                 .page(params[:page])
+                .records
   end
 end
