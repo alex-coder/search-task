@@ -15,30 +15,29 @@ class Activity < ApplicationRecord
     mappings do
       indexes :title, analyzer: 'russian'
       indexes :description, analyzer: 'russian'
-      indexes :city, analyzer: 'russian'
+      indexes :city, type: 'nested' do
+        indexes :name, analyzer: 'russian'
+      end
 
       indexes :tags, type: 'nested' do
         indexes :name, analyzer: 'russian'
       end
 
       indexes :attractions, type: 'nested' do
-        indexes :title, analyzer: 'russian'
+        indexes :name, analyzer: 'russian'
         indexes :description, analyzer: 'russian'
       end
     end
   end
 
   def as_indexed_json(options={})
-    attractions = self.attractions.map do |item|
-      { name: item.title, description: item.description }
-    end
-
-    {
-      title: self.title,
-      description: self.description,
-      city: self.city.name,
-      tags: self.tags.map(&:name),
-      attractions: attractions
-    }.as_json
+    self.as_json(
+      only: [ :title, :description ],
+      include: {
+        city: { only: :name },
+        tags: { only: :name },
+        attractions: { only: [:name, :description] }
+      }
+    )
   end
 end
